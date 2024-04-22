@@ -1,0 +1,34 @@
+{
+    "name": "InputMgr",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "6f5a9f45-de19-4ea0-b333-ff68e54cc984",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "PassThrough",
+                    "id": "7d7aa4a4-3e15-4426-8895-442979d11637",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "84129983-5e16-46c6-944d-35c882a52e9b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
