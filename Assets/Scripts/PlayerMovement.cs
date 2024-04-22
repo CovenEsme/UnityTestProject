@@ -1,16 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     InputMgr inputMgr;
     Vector2 inputVec;
 
+    [SerializeField] private PlayerCore playerCore;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float forwardForce = 2000f;
     [SerializeField] private float sidewaysForce = 1000f;
+
+    private float voidHeight = 3f;
 
     // Awake is called before Start
     private void Awake()
@@ -24,10 +24,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+        GameMgr gameMgr = playerCore.GetGameMgr();
 
-        Vector3 inputForce = new Vector3(inputVec.x * sidewaysForce, 0, 0) * Time.deltaTime;
-        rb.AddForce(inputForce, ForceMode.VelocityChange);
+        if (gameMgr.GetState() == GameState.Normal)
+        {
+            rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+
+            Vector3 inputForce = new Vector3(inputVec.x * sidewaysForce, 0, 0) * Time.deltaTime;
+            rb.AddForce(inputForce, ForceMode.VelocityChange);
+
+            if (rb.position.y < -voidHeight || rb.position.y > voidHeight)
+            {
+                gameMgr.SetState(GameState.End);
+            }
+        } else if (gameMgr.GetState() == GameState.End)
+        {
+            enabled = false;
+        }
     }
 
     // InputMgr stuff

@@ -6,3 +6,4 @@ The project is a [Velocibox](https://www.shawnbeckgames.com/velocibox/)-style en
 
 My changes:
 * Controller support using Unity's "new" (it's 4+ years old at this point xD) input system
+* Add a GameState system that dives the game and is responsible for spawning the player
